@@ -14,19 +14,20 @@ services:
       - "PluralKit__Bot__Token=${BOT_TOKEN}"
       - "PluralKit__Bot__ClientId=${CLIENT_ID}"
       - "PluralKit__Bot__AdminRole=${ADMIN_ROLE}"
+      - "PluralKit__Bot__ApiUrl=https://api.pluralkit.me/v2"  # Point to official API
     volumes:
       - "/var/log/pluralkit-vixen:/var/log/pluralkit-vixen"
     restart: unless-stopped
 
-  vixen-api:
-    image: pluralkit-vixen
-    command: ["bin/PluralKit.API.dll"]
-    environment:
-      - "PluralKit__Database=Host=vixen-db;Username=postgres;Password=postgres;Database=postgres;Maximum Pool Size=1000"
-      - "PluralKit__RedisAddr=vixen-redis"
-    ports:
-      - "127.0.0.1:2840:5000"
-    restart: unless-stopped
+#  vixen-api:
+#    image: pluralkit-vixen
+#    command: ["bin/PluralKit.API.dll"]
+#    environment:
+#      - "PluralKit__Database=Host=vixen-db;Username=postgres;Password=postgres;Database=postgres;Maximum Pool Size=1000"
+#      - "PluralKit__RedisAddr=vixen-redis"
+#    ports:
+#      - "127.0.0.1:2840:5000"
+#    restart: unless-stopped
 
   vixen-scheduled_tasks:
     image: pluralkit-vixen
